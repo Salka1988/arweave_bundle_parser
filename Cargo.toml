@@ -15,3 +15,5 @@ num-bigint = "0.2.6"
 num-traits = "0.2.19"
 sha2 = "0.10.8"
 base64 = "0.22.1"
+
+bundlr-sdk = { git = "https://github.com/Salka1988/bundlr-sdk", branch = "salka1988/add_data_item"}
