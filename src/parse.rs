@@ -3,6 +3,7 @@ use bundlr_sdk::{BundlrTx, DataItem};
 use serde_json::to_string;
 use tokio::fs::File;
 use tokio::io::{AsyncReadExt, AsyncWriteExt, BufWriter};
+use crate::utils::{read_exact_bytes, read_u64_le, read_usize_le};
 
 pub async fn parse_bundle<R: AsyncReadExt + Unpin>(reader: &mut R, output_path: &str) -> Result<()> {
     // Read the first 32 bytes to get the number of items (LittleEndian)
@@ -58,38 +59,4 @@ pub async fn parse_bundle<R: AsyncReadExt + Unpin>(reader: &mut R, output_path: 
     writer.flush().await?;
 
     Ok(())
-}
-
-async fn read_exact_bytes<R: AsyncReadExt + Unpin>(reader: &mut R, len: usize) -> Result<Vec<u8>> {
-    let mut buf = vec![0u8; len];
-    reader.read_exact(&mut buf).await?;
-    Ok(buf)
-}
-
-async fn read_u64_le<R: AsyncReadExt + Unpin>(reader: &mut R, len: usize) -> Result<u64> {
-    if len != 32 {
-        return Err(Error::InvalidDataFormat(format!(
-            "Expected 32 bytes for u64, got {} bytes",
-            len
-        )));
-    }
-    let buf = read_exact_bytes(reader, len).await?;
-    // Ensure bytes 8-31 are zero
-    if buf.iter().skip(8).any(|&b| b != 0) {
-        return Err(Error::InvalidDataFormat("u64 value exceeds 8 bytes".to_string()));
-    }
-    // Read the first 8 bytes as little-endian u64
-    let value = u64::from_le_bytes(
-        buf[0..8]
-            .try_into()
-            .map_err(|_| Error::InvalidDataFormat("Failed to parse u64".to_string()))?,
-    );
-    Ok(value)
-}
-
-async fn read_usize_le<R: AsyncReadExt + Unpin>(reader: &mut R, len: usize) -> Result<usize> {
-    let value = read_u64_le(reader, len).await?;
-    value
-        .try_into()
-        .map_err(|_| Error::InvalidDataFormat("usize conversion failed".to_string()))
 }

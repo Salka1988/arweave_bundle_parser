@@ -157,14 +157,18 @@ dependencies = [
 name = "arweave_bundle_parser"
 version = "0.1.0"
 dependencies = [
+ "base64 0.22.1",
  "bundlr-sdk",
  "clap",
+ "futures",
  "futures-util",
+ "hex",
  "num-bigint 0.4.6",
  "num-traits",
  "reqwest",
  "serde",
  "serde_json",
+ "sha2 0.10.8",
  "thiserror",
  "tokio",
  "tokio-util 0.7.12",
@@ -268,6 +272,12 @@ name = "base64"
 version = "0.21.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9d297deb1925b89f2ccc13d7635fa0714f12c87adce1c75356b39ca9b7178567"
+
+[[package]]
+name = "base64"
+version = "0.22.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "72b3254f16251a8381aa12e40e3c4d2f0199f8c6508fbecb9d91f575e0fbb8c6"
 
 [[package]]
 name = "base64ct"
@@ -383,7 +393,6 @@ checksum = "79296716171880943b8470b5f8d03aa55eb2e645a4874bdbb28adb49162e012c"
 [[package]]
 name = "bundlr-sdk"
 version = "0.5.0"
-source = "git+https://github.com/Salka1988/bundlr-sdk?branch=salka1988/add_data_item#703421d125c3d25bfb79275a6991c2efd8280b57"
 dependencies = [
  "anyhow",
  "arweave-rs",

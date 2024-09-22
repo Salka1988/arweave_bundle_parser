@@ -1,3 +1,5 @@
+use std::ffi::OsStr;
+use std::path::PathBuf;
 use clap::Parser;
 
 #[derive(Parser, Debug)]
@@ -9,4 +11,5 @@ pub struct Cli {
     /// The output JSON file path (optional, defaults to 'bundle.json')
     #[arg(short, long)]
     pub output: String,
+
 }

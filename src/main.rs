@@ -3,6 +3,7 @@ use arweave_bundle_parser::errors::Result;
 use arweave_bundle_parser::fetch::fetch_transaction_data;
 use arweave_bundle_parser::parse::parse_bundle;
 use arweave_bundle_parser::cli::Cli;
+use arweave_bundle_parser::utils::parse_and_print_json_file;
 
 #[tokio::main]
 async fn main() -> Result<()> {
@@ -16,11 +17,12 @@ async fn main() -> Result<()> {
 
     println!("Parsing bundle...");
     parse_bundle(&mut reader, &args.output).await?;
-    println!("Parsed and saved bundle successfully!");
+    
+    parse_and_print_json_file(&args.output).await?;
+
 
     Ok(())
 }
-
 // #[cfg(test)]
 // mod test {
 //     use num_bigint::BigUint;
