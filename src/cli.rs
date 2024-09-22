@@ -5,8 +5,8 @@ use clap::Parser;
 pub struct Cli {
     /// The transaction ID of the Arweave bundle to parse
     #[arg(short, long)]
-    transaction_id: String,
+    pub transaction_id: String,
     /// The output JSON file path (optional, defaults to 'bundle.json')
     #[arg(short, long)]
-    output: String,
+    pub output: String,
 }

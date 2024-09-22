@@ -1,5 +1,3 @@
-// src/main.rs
-
 use clap::Parser;
 use arweave_bundle_parser::errors::Result;
 use arweave_bundle_parser::fetch::fetch_transaction_data;
@@ -14,10 +12,10 @@ async fn main() -> Result<()> {
     let transaction_id = "G7eiK22V-M6RZTcWbq6THzRegvFU6_1NTAHVBOryMpw";
     println!("Fetching transaction data for ID: {}", transaction_id);
 
-    let mut reader = fetch_transaction_data(transaction_id).await?;
+    let mut reader = fetch_transaction_data(&args.transaction_id).await?;
 
     println!("Parsing bundle...");
-    parse_bundle(&mut reader).await?;
+    parse_bundle(&mut reader, &args.output).await?;
     println!("Parsed and saved bundle successfully!");
 
     Ok(())
