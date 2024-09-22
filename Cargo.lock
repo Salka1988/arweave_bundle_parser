@@ -160,11 +160,8 @@ dependencies = [
  "base64 0.22.1",
  "bundlr-sdk",
  "clap",
- "futures",
  "futures-util",
  "hex",
- "num-bigint 0.4.6",
- "num-traits",
  "reqwest",
  "serde",
  "serde_json",
@@ -393,6 +390,7 @@ checksum = "79296716171880943b8470b5f8d03aa55eb2e645a4874bdbb28adb49162e012c"
 [[package]]
 name = "bundlr-sdk"
 version = "0.5.0"
+source = "git+https://github.com/Salka1988/bundlr-sdk?branch=salka1988/add_data_item#85af742dc3459a7f9acb84a4ae455bc841237ddf"
 dependencies = [
  "anyhow",
  "arweave-rs",

@@ -15,13 +15,11 @@ pub async fn fetch_transaction_data(
         .await
         .map_err(|e| Error::HttpRequestError(e.to_string()))?;
 
-    // Check if the request was successful
     if !response.status().is_success() {
         return Err(Error::HttpRequestError(format!(
             "{}: {}",
             reqwest::StatusCode::from_u16(response.status().as_u16())
-                .expect("Invalid status code encountered")
-                .to_string(),
+                .expect("Invalid status code encountered"),
             "Failed to fetch transaction data",
         )));
     }
