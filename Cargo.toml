@@ -14,3 +14,4 @@ futures-util = "0.3"
 num-bigint = "0.4"
 num-traits = "0.2"
 thiserror = "1.0.63"
+clap = { version = "4.1", features = ["derive"] }
