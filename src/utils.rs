@@ -1,8 +1,8 @@
+use crate::errors::{Error, Result};
 use bundlr_sdk::DataItem;
 use serde::{Deserialize, Serialize};
 use std::fmt::Debug;
 use tokio::fs::File;
-use crate::errors::{Error, Result};
 use tokio::io::{AsyncReadExt, BufReader};
 pub(crate) async fn read_exact_bytes<R: AsyncReadExt + Unpin>(
     reader: &mut R,
