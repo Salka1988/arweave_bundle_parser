@@ -1,5 +1,3 @@
-// src/parse.rs
-
 use crate::errors::{Error, Result};
 use bundlr_sdk::{BundlrTx, DataItem};
 use serde_json::to_string;
